@@ -1,0 +1,18 @@
+import { Router } from "express"
+import { usersRouter } from "./user-routes"
+import { sessionsRoutes } from "./sessions-routes"
+import { refundsRoutes } from "./refunds-routes"
+import { ensureAuthenticated } from "@/middlewares/ensure-authenticated"
+
+const routes = Router()
+
+//rotas publicas
+routes.use("/users",usersRouter)
+routes.use("/sessions",sessionsRoutes)
+
+//rotas publicas
+routes.use(ensureAuthenticated)
+routes.use("/refunds", refundsRoutes)
+
+
+export { routes }
